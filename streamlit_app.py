@@ -45,11 +45,14 @@ streamlit.write('The user entered ', add_fruit)
 # write your own comment -what does the next line do? 
 
 # write your own comment - what does this do?
+streamlit.header("the fruit load list contains")
+def get_fruit_load_list():
+   with my_cnx.cursor() as my_cur:
+        my_cur.execute(elect * from pc_rivery_db.public.fruit_load_list")
+        return my_cur.fetchall()       
+if streamlit.button('Get Fruit Load List:):
+   my_cnx=snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   my_data_rows = get_fruit_load_list()
+   
+   streamlit.dataframe(my_data_rows)
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchall()
-streamlit.header("Fruit list contains:")
-streamlit.dataframe(my_data_rows)
-my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit')")
